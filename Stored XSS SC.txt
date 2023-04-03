@@ -1,0 +1,15 @@
+<br />
+        <input type="text" id="login" name="login" action="192.168.163.130"></p> 
+
+        <p><label for="password">Password:</label><br />
+        <input type="password" id="password" name="password" action="192.168.163.130"</p>
+
+        <p><label for="security_level">Set the security level:</label><br />
+    
+        </p>
+
+        <button type="submit" name="form" value="submit">Login</button>
+
+    </form>
+
+    <br />

