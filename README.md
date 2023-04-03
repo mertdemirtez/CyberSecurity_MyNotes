@@ -1,1 +1,1 @@
-# CS_MyNotes
+# CyberSecurity_MyNotes
